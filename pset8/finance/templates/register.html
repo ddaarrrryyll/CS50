@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" id="registration_form" class="needs-validation" novalidate>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" id="username" placeholder="Username" type="text" required>
+            <div class="invalid-feedback">
+                Provide a username
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password" required>
+            <div class="invalid-feedback">
+                Provide a password
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" required>
+            <div class="invalid-feedback">
+                Confirm Password
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="register_button">Register</button>
+    </form>
+
+    <script src="/static/validate_form.js"></script>
+    <script>
+        document.getElementById("register_button").addEventListener("click", function(event){
+            event.preventDefault();
+
+            $.get("/check",
+                  {username: $("#username").val()},
+                  (function(response) {
+                      if(response == false){
+                          alert("Username has been taken")
+                      }else{
+                          document.getElementById("registration_form").submit()
+                      };
+                  })
+                 );
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h3 class="mb-3">Rate your meal</h3>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post">
+
+        <div>
+            <input autocomplete="off" name="name" placeholder="Name" type="text">
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <div>
+            <select name="meal">
+                <option disabled selected value=" ">Menu Item</option>
+                <option value="Fried Rice">Fried Rice</option>
+                <option value="Fried Noodles">Fried Noodles</option>
+                <option value="Cheese Fries">Cheese Fries</option>
+                <option value="Carrot Cake">Carrot Cake</option>
+                <option value="Pumpkin Cake">Pumpkin Cake</option>
+                <option value="Iced Tea">Iced Tea</option>
+                <option value="Iced Coffee">Iced Coffee</option>
+            </select>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <div>
+            <input type="radio" name="stars" value="1 Star" id="radioid1">1 Star<br>
+            <input type="radio" name="stars" value="2 Stars" id="radioid2">2 Stars<br>
+            <input type="radio" name="stars" value="3 Stars" id="radioid3">3 Stars<br>
+            <input type="radio" name="stars" value="4 Stars" id="radioid4">4 Stars<br>
+            <input type="radio" name="stars" value="5 Stars" id="radioid5">5 Stars<br>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+
+    <script>
+        document.querySelector("form").onsubmit = function()
+        {
+            var radioInput1 = document.getElementById("radioid1");
+            var radioInput2 = document.getElementById("radioid2");
+            var radioInput3 = document.getElementById("radioid3");
+            var radioInput4 = document.getElementById("radioid4");
+            var radioInput5 = document.getElementById("radioid5");
+
+            if (!document.querySelector("input").value)
+            {
+                alert("Please provide your name");
+                return false;
+            }
+            else if (document.querySelector("select").value == " ")
+            {
+                alert("Please provide your meal consumed");
+                return false;
+            }
+            else if ((radioInput1.checked === false) && (radioInput2.checked === false) && (radioInput3.checked === false) && (radioInput4.checked === false) && (radioInput5.checked === false))
+            {
+                alert("Please rate your meal");
+                return false;
+            }
+            return true;
+        };
+    </script>
+
+{% endblock %}

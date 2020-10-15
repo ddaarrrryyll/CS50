@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/components/alerts/ -->
+    <ul>
+        {% for feedback in feedbacks %}
+            <li>{{ feedback }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
