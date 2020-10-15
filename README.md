@@ -1,1 +1,2 @@
-# CS50-PSets
+# CS50
+Harvard's CS50: Introduction to Computer Science
